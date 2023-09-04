@@ -29,7 +29,7 @@ class ProductController extends Controller
         })->when($request->keyword, function ($query) use ($request) {
             return $query->where(function ($q) use ($request) {
                 $q->where('name', 'LIKE', "%$request->keyword%")
-                    ->orWhere('description', 'LIKE', "%$request->keyword%");
+                    ->orWhereRaw("REGEXP_REPLACE(description, '<[^>]+>', '') LIKE '%$request->keyword%'");
             });
         });
 

@@ -28,7 +28,7 @@
                             <tr v-for="(product, key) in products" :key="key">
                                 <td>{{ product.name }}</td>
                                 <td>{{ product.category }}</td>
-                                <td>{{ product.description }}</td>
+                                <td>{{ removeTags(product.description) }}</td>
                                 <td class="col-1">
                                     <div class="row justify-content-between">
                                         <a :href="editUrl(product)" class="btn btn-dark my-1">
@@ -104,6 +104,14 @@
             },
             editUrl (product) {
                 return route('product.form', product)
+            },
+            removeTags(input) {
+                const tempElement = document.createElement('div') // Create an element
+                tempElement.innerHTML = input // Put the parameter inside the element
+
+                const textContent = tempElement.textContent // Access textContent property to remove HTML tags
+
+                return textContent;
             },
             async search () {
                 this.page.current = 1
