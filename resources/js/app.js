@@ -7,6 +7,8 @@ import CKEditor from '@ckeditor/ckeditor5-vue';
 import { createApp, h } from 'vue/dist/vue.esm-bundler'
 import { createInertiaApp } from '@inertiajs/vue3'
 
+import CartComponent from './Pages/Cart/CartComponent.vue'
+
 const options = {
     confirmButtonColor: '#41b882',
     cancelButtonColor: '#6c757d',
@@ -23,6 +25,8 @@ createInertiaApp({
         .use(CKEditor)
 
       app.config.globalProperties.$route = route
+
+      app.component('CartComponent', CartComponent)
 
       app.mount(el)
     },

@@ -61,7 +61,7 @@
                         </div>
                     </a>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">Go to Checkout Page</a>
+                <a href="{{ route('cart.create') }}" class="dropdown-item dropdown-footer">Go to Checkout Page</a>
             </div>
         </li>
     </ul>
