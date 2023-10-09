@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('admin_id')->constrained();
             $table->decimal('total_amount', 8, 2);
+            $table->boolean('payment_method');
             $table->boolean('payment_status')->default(PaymentStatus::PENDING->value);
             $table->timestamps();
         });

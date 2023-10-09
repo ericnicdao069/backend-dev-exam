@@ -19,7 +19,8 @@ class Order extends Model
     protected $fillable = [
         'admin_id',
         'total_amount',
-        'payment_status'
+        'payment_status',
+        'payment_type'
     ];
 
     /**
