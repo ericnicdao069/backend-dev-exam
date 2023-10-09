@@ -13,6 +13,7 @@
     "dependencies": {
         "@ckeditor/ckeditor5-build-classic": "^39.0.1",
         "@ckeditor/ckeditor5-vue": "^5.1.0",
+        "@inertiajs/vue3": "^1.0.11",
         "@vitejs/plugin-vue": "^4.3.4",
         "@vuepic/vue-datepicker": "^6.0.3",
         "video.js": "^8.5.2",
