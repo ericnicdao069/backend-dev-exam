@@ -17,9 +17,9 @@
                     <div class="media">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
-                                Brad Diesel
+                                Test Item 3
                             </h3>
-                            <p class="text-sm">Call me whenever you can...</p>
+                            <p class="text-sm">Dummy Description</p>
                         </div>
                         <div>
                             <a href="javascript:void(0)" class="">
@@ -33,9 +33,9 @@
                     <div class="media">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
-                                John Pierce
+                                Test Item 2
                             </h3>
-                            <p class="text-sm">I got your message bro</p>
+                            <p class="text-sm">Dummy Description</p>
                         </div>
                         <div>
                             <a href="javascript:void(0)" class="">
@@ -49,9 +49,9 @@
                         <div class="media">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
-                                    Nora Silvester
+                                    Test Item 1
                                 </h3>
-                                <p class="text-sm">The subject goes here</p>
+                                <p class="text-sm">Dummy Description</p>
                             </div>
                             <div>
                                 <a href="javascript:void(0)" class="">
@@ -61,7 +61,7 @@
                         </div>
                     </a>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                <a href="#" class="dropdown-item dropdown-footer">Go to Checkout Page</a>
             </div>
         </li>
     </ul>
