@@ -18,9 +18,12 @@ createInertiaApp({
       return pages[`./Pages/${name}.vue`]
     },
     setup({ el, App, props, plugin }) {
-      createApp({ render: () => h(App, props) })
+      const app = createApp({ render: () => h(App, props) })
         .use(VueSweetalert2, options)
         .use(CKEditor)
-        .mount(el)
+
+      app.config.globalProperties.$route = route
+
+      app.mount(el)
     },
 })
