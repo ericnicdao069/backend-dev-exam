@@ -14,6 +14,10 @@
         <!-- Styles -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+        @auth
+            @inertiaHead
+        @endauth
+
         @stack('styles')
     </head>
     <body class="antialiased {{ $bodyClass ?? '' }}">
@@ -25,7 +29,8 @@
             <div class="wrapper">
                 @include('layouts.sidebar')
                 <div class="content-wrapper">
-                    @yield('content')
+                    @inertia
+                    {{-- @yield('content') --}}
                 </div>
             </div>
             @routes
@@ -35,7 +40,8 @@
 
     @vite([
         'resources/js/plugins/jquery/jquery.min.js',
-        'resources/js/dist/js/adminlte.js'
+        'resources/js/dist/js/adminlte.js',
+        'resources/js/app.js'
     ])
     @stack('scripts')
 </html>
