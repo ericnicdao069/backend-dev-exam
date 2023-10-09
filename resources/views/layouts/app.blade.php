@@ -40,6 +40,8 @@
 
     @vite([
         'resources/js/plugins/jquery/jquery.min.js',
+        'resources/js/plugins/jquery-ui/jquery-ui.min.js',
+        'resources/js/plugins/bootstrap/js/bootstrap.bundle.min.js',
         'resources/js/dist/js/adminlte.js',
         'resources/js/app.js'
     ])
