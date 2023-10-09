@@ -29,6 +29,7 @@ class ProductController extends Controller
         }
 
         return Inertia::render('Product/FormComponent', [
+            'product' => $product,
             'categoryEnum' => ProductCategory::getOptions()
         ]);
     }
