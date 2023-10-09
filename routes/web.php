@@ -22,6 +22,11 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
         Route::get('form/{product?}', [ProductController::class, 'form'])->name('form');
     });
 
+    Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
+        Route::get('/', [CartController::class, 'create'])->name('create');
+        Route::post('/', [CartController::class, 'store'])->name('store');
+    });
+
     Route::get('videos', [VideoController::class, 'videos'])->name('videos');
 });
 
