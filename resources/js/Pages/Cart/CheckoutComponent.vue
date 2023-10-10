@@ -12,35 +12,59 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <!-- <div class="row py-2">
-                                <input class="form-control" type="text" name="name" placeholder="Juan Dela Cruz">
+                    <div class="row justify-content-around">
+                        <div class="col-md-8">
+                            <div class="row card">
+                                <div class="card-header p-2 bg-dark text-center">
+                                    <h5>Cart</h5>
+                                </div>
+                                <div class="card-body">
+                                    <table id="example2" class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-3">Item</th>
+                                                <th class="col-6">Description</th>
+                                                <th class="col-3">Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="item in $cart.getters.list" :key="item.id">
+                                                <td class="align-middle col-3">{{ item.name }}</td>
+                                                <td class="col-6">{{ item.description }}</td>
+                                                <td class="align-middle col-3">PhP {{ (Math.random() * 100).toFixed(2) }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div class="row py-2">
-                                <input class="form-control" type="text" name="delivery_address">
-                            </div>
-                            <div class="row py-2">
-                                <input class="form-control" type="text" name="number" placeholder="09XX XXX XXXX">
-                            </div>
-                            <div class="row justify-content-center">
-                                <button class="btn btn-secondary" type="submit">Submit</button>
-                            </div> -->
-                            <div class="card">
-                                <div class="card-header p-2">
+                            <div class="row card">
+                                <div class="card-header p-2 bg-dark text-center">
                                     <h5>Personal Information</h5>
                                 </div>
                                 <div class="card-body">
-                                    <div class="tab-content">
-                                        <div class="active tab-pane" id="checkout-form">
-                                            // Put Two Column Form Here
+                                    <div class="row">
+                                        <div class="form-group col-6">
+                                            <label for="firstName">First Name</label>
+                                            <input v-model="form.firstname" type="email" class="form-control" id="firstName" placeholder="Enter First Name">
                                         </div>
+                                        <div class="form-group col-6">
+                                            <label for="exampleInputEmail1">Last Name</label>
+                                            <input v-model="form.lastname" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Delivery Address</label>
+                                        <input class="form-control" v-model="form.address" type="text" placeholder="Enter Address">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Contact #</label>
+                                        <input class="form-control" v-model="form.contact" type="text" name="contact" placeholder="Enter Contact Number">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <cart />
+                            <cart :form="form" />
                         </div>
                     </div>
                 </div>
@@ -59,6 +83,13 @@
         layout: Layout,
         data () {
             return {
+                form: {
+                    firstname: '',
+                    lastname: '',
+                    address: '',
+                    contact: '',
+                    address: ''
+                }
             }
         },
         created () {
