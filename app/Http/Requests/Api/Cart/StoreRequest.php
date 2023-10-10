@@ -24,8 +24,8 @@ class StoreRequest extends FormRequest
         return [
             // 'firstname' => ['required', 'string'],
             // 'lastname' => ['required', 'string'],
-            // 'address' => ['required', 'string'],
-            // 'contact' => ['required', 'string']
+            'address' => ['required', 'string'],
+            'contact' => ['required', 'string'],
             'payable' => ['required', 'numeric']
         ];
     }

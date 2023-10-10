@@ -43,8 +43,8 @@ class CartController extends Controller
 
         $order = auth()->user()->orders()->create([
             'total_amount' => $request->payable,
-            'contact' => '121212121',
-            'address' => 'Dummy',
+            'contact' => $request->contact,
+            'address' => $request->address,
             'payment_method' => PaymentMethod::GCASH->value,
         ]);
 

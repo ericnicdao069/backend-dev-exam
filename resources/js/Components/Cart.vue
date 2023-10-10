@@ -33,6 +33,8 @@
             submit() {
                 const data = new FormData()
                 data.append('payable', this.payable)
+                data.append('contact', this.form.contact)
+                data.append('address', this.form.address)
 
                 // for (const key in this.form) {
                 //     data.append(key, this.form[key])
