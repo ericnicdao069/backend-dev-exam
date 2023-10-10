@@ -27,9 +27,8 @@
             return {
             }
         },
-        computed: {
-        },
         created () {
+            this.$cart.commit('clear')
         },
         methods: {
         }

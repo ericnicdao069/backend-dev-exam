@@ -24,6 +24,9 @@ export default createStore({
     remove (state, id) {
       const index = state.items.findIndex(product => product.id === id)
       state.items.splice(index, 1)
+    },
+    clear (state) {
+      state.items = []
     }
   },
   actions: {

@@ -22,7 +22,7 @@
 
 <script>
     export default {
-        props: ['token', 'form'],
+        props: ['token', 'form', 'payable'],
         data () {
             return {
             }
@@ -31,11 +31,19 @@
         },
         methods: {
             submit() {
-                console.log(this.form)
+                const data = new FormData()
+                data.append('payable', this.payable)
+                data.append('contact', this.form.contact)
+                data.append('address', this.form.address)
+
+                // for (const key in this.form) {
+                //     data.append(key, this.form[key])
+                // }
+
                 axios({
                     method: 'POST',
                     url: this.$route('cart.store'),
-                    // data: data,
+                    data: data,
                     headers: {
                         Authorization: "Bearer " + this.token,
                         'Content-Type': 'multipart/form-data'
@@ -45,8 +53,6 @@
                         window.open(response.data, '_blank');
                     }
                 }).catch(error => {
-                    this.errors = error.response.data.errors
-                    this.redirectStep(Object.getOwnPropertyNames(error.response.data.errors))
                     console.error('Error fetching data:', error)
                 })
             }

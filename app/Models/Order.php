@@ -23,7 +23,7 @@ class Order extends Model
         'address',
         'paymongo_reference_id',
         'payment_status',
-        'payment_type'
+        'payment_method'
     ];
 
     /**

@@ -52,7 +52,7 @@
                                     <h5>Personal Information</h5>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="form-group col-6">
                                             <label for="firstName">First Name</label>
                                             <input v-model="form.firstname" type="email" class="form-control" id="firstName" placeholder="Enter First Name">
@@ -61,7 +61,7 @@
                                             <label for="exampleInputEmail1">Last Name</label>
                                             <input v-model="form.lastname" type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Last Name">
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Delivery Address</label>
                                         <input class="form-control" v-model="form.address" type="text" placeholder="Enter Address">
@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <cart :form="form" />
+                            <cart :form="form" :payable="total" />
                         </div>
                     </div>
                 </div>
@@ -97,8 +97,7 @@
                     firstname: '',
                     lastname: '',
                     address: '',
-                    contact: '',
-                    address: ''
+                    contact: ''
                 }
             }
         },
