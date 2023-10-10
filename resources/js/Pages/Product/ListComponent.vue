@@ -35,6 +35,7 @@
                                 <div class="card-body table-responsive">
                                     <table v-if="products.length > 0">
                                         <thead class="text-center">
+                                            <th></th>
                                             <th>Name</th>
                                             <th>Category</th>
                                             <th>Description</th>
@@ -42,6 +43,11 @@
                                         </thead>
                                         <tbody class="text-center">
                                             <tr v-for="(product, key) in products" :key="key">
+                                                <td>
+                                                    <a class="btn btn-info" @click.prevent="addToCart(product)">
+                                                        <i class="fas fa-cart-plus"></i>
+                                                    </a>
+                                                </td>
                                                 <td>{{ product.name }}</td>
                                                 <td>{{ product.category }}</td>
                                                 <td>{{ product.description }}</td>
@@ -124,6 +130,10 @@
                 })
 
                 this.categories = items
+            },
+            addToCart(product) {
+                this.$cart.commit('set', product)
+                this.$swal(`${product.name} added to cart!`)
             },
             async search () {
                 this.page.current = 1

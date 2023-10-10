@@ -1,5 +1,6 @@
 <template>
-    <div class="row">
+<div>Test</div>
+    <!-- <div class="row">
         <table>
             <thead>
                 <tr><th>Name</th><th>Description</th><th>Quantity</th><th>Price</th><th>Subtotal</th></tr>
@@ -28,7 +29,7 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div> -->
 </template>
 
 <script>
