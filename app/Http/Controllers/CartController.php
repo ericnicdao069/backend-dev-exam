@@ -48,6 +48,8 @@ class CartController extends Controller
             'payment_method' => PaymentMethod::GCASH->value,
         ]);
 
+        $order->products()->attach($request->products);
+
         $gcashSrc = $paymongo->createSource($request->payable, $order);
 
         $order->update([
