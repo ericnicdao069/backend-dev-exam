@@ -19,6 +19,7 @@ class ProductFactory extends Factory
     {
         return [
             'name' => fake()->word,
+            'price' => fake()->randomNumber(3),
             'category' => fake()->randomElement(array_map(
                 fn(ProductCategory $category) => $category->value, 
                 ProductCategory::cases()

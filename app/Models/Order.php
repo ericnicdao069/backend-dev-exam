@@ -19,6 +19,9 @@ class Order extends Model
     protected $fillable = [
         'admin_id',
         'total_amount',
+        'contact',
+        'address',
+        'paymongo_reference_id',
         'payment_status',
         'payment_type'
     ];

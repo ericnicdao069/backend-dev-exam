@@ -10,7 +10,16 @@ export default createStore({
   },
   mutations: {
     set (state, item) {
-        state.items.push(item)
+        const index = state.items.findIndex(product => product.id === item.id)
+
+        if (index != -1) {
+          state.items[index].quantity++
+          state.items[index].subtotal = state.items[index].quantity * state.items[index].price
+        } else {
+          item.quantity = 1
+          item.subtotal = item.price
+          state.items.push(item)
+        }
     },
     remove (state, id) {
       const index = state.items.findIndex(product => product.id === id)

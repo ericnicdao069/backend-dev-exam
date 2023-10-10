@@ -7,7 +7,7 @@ use App\Enums\PaymentMethod;
 use App\Enums\PaymentStatus;
 use Luigel\Paymongo\Facades\Paymongo;
 
-class PaymongoService
+class PayMongoService
 {
     protected $order;
     protected $type;
@@ -17,10 +17,10 @@ class PaymongoService
      * @param \App\Models\Order $order
      * @param string $type
      */
-    public function __construct($order, $type)
+    public function __construct(/*$order, $type*/)
     {
-        $this->order = $order;
-        $this->type = $type;
+        // $this->order = $order;
+        // $this->type = $type;
     }
 
     /**
@@ -59,5 +59,18 @@ class PaymongoService
         $paymentMethod = Paymongo::paymentMethod()->create($payload);
 
         return $paymentMethod;
+    }
+
+    public function createSource($type)
+    {
+        return Paymongo::source()->create([
+            'type' => 'gcash',
+            'amount' => 100.00,
+            'currency' => 'PHP',
+            'redirect' => [
+                'success' => route('cart.payment.success'),
+                'failed' => route('cart.payment.failed')
+            ]
+        ]);
     }
 }

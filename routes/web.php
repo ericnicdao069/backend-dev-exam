@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
         Route::get('/', [CartController::class, 'create'])->name('create');
         Route::post('/', [CartController::class, 'store'])->name('store');
+        Route::get('payment/success', [PaymentController::class, 'success'])->name('payment.success');
+        Route::get('payment/failed', [PaymentController::class, 'failed'])->name('payment.failed');
     });
 
     Route::get('videos', [VideoController::class, 'videos'])->name('videos');
