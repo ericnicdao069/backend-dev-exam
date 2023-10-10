@@ -28,7 +28,6 @@ createInertiaApp({
 
       app.config.globalProperties.$route = route
       app.config.globalProperties.$cart = cart
-      app.config.globalProperties.$token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 
       app.component('CartListMini', CartListMini)
 

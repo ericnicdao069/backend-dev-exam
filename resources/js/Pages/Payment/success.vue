@@ -18,20 +18,14 @@
     </section>
 </template>
 
-<script>
+<script lang="ts">
     import { defineComponent } from 'vue'
     import Layout from '../../Components/Layout.vue'
 
     export default defineComponent({
         layout: Layout,
-        data () {
-            return {
-            }
-        },
         created () {
             this.$cart.commit('clear')
-        },
-        methods: {
         }
     })
 </script>

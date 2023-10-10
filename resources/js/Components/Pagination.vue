@@ -26,11 +26,20 @@
     </nav>
 </template>
 
-<script>
+<script lang="ts">
     import { defineComponent } from 'vue'
 
     export default defineComponent({
-        props: ['currentPage', 'lastPage'],
+        props: {
+            currentPage: {
+                required: true,
+                type: Number
+            },
+            lastPage: {
+                required: true,
+                type: Number
+            }
+        },
         data () {
             return {
                 navigationPaginationList: this.process(this.currentPage, this.lastPage)
@@ -39,15 +48,15 @@
         computed: {
         },
         watch: {
-            currentPage (newValue) {
+            currentPage (newValue: number) {
                 this.navigationPaginationList = this.process(newValue, this.lastPage)
             },
-            lastPage (newValue) {
+            lastPage (newValue: number) {
                 this.navigationPaginationList = this.process(this.currentPage, newValue)
             }
         },
         methods: {
-            process (currentPage, lastPage) {
+            process (currentPage: number, lastPage: number) {
                 if (!currentPage) {
                     return null
                 }
@@ -68,7 +77,7 @@
                 }
                 return [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', lastPage]
             },
-            isActive (page) {
+            isActive (page: number) {
                 return this.currentPage != page && page != '...'
             }
         }
