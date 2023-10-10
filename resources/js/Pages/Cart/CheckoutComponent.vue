@@ -22,18 +22,20 @@
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th class="col-3">Item</th>
+                                                <th class="col-2">Item</th>
                                                 <th class="col-4">Description</th>
-                                                <th class="col-1">Quantity</th>
+                                                <th class="col-2">Quantity</th>
                                                 <th class="col-2">Price</th>
                                                 <th class="col-2">Subtotal</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="item in $cart.getters.list" :key="item.id">
-                                                <td class="align-middle col-3">{{ item.name }}</td>
+                                            <tr v-for="item in cart" :key="item.id">
+                                                <td class="align-middle col-2">{{ item.name }}</td>
                                                 <td class="col-4">{{ item.description }}</td>
-                                                <td class="align-middle col-1">{{ item.quantity }}</td>
+                                                <td class="align-middle col-2">
+                                                    <input v-model="item.quantity" type="number" class="form-control" @change="update(item)">
+                                                </td>
                                                 <td class="align-middle col-2">₱ {{ item.price }}</td>
                                                 <td class="align-middle text-right  col-2">₱ {{ item.subtotal }}</td>
                                             </tr>
@@ -74,7 +76,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <cart :form="form" :payable="total" />
+                            <cart :form="form" :cart="cart" :payable="total" />
                         </div>
                     </div>
                 </div>
@@ -98,7 +100,8 @@
                     lastname: '',
                     address: '',
                     contact: ''
-                }
+                },
+                cart: this.$cart.getters.list
             }
         },
         computed: {
@@ -107,9 +110,14 @@
             }
         },
         created () {
-            console.log('Component Loaded')
+            console.log(this.cart)
         },
         methods: {
+            update(item) {
+                this.$cart.commit('update', item)
+                console.log(this.$cart.getters.list)
+                console.log(this.cart)
+            }
         }
     }
 </script>
