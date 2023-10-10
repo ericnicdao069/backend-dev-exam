@@ -11,6 +11,10 @@ export default createStore({
   mutations: {
     set (state, item) {
         state.items.push(item)
+    },
+    remove (state, id) {
+      const index = state.items.findIndex(product => product.id === id)
+      state.items.splice(index, 1)
     }
   },
   actions: {
