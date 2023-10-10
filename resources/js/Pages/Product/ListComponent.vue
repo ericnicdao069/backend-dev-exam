@@ -14,7 +14,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div id="app" class="col">
+                <div class="col">
                     <div class="row">
                         <div class="col-11 mx-auto">
                             <div class="card p-2">
@@ -35,6 +35,7 @@
                                 <div class="card-body table-responsive">
                                     <table v-if="products.length > 0">
                                         <thead class="text-center">
+                                            <th></th>
                                             <th>Name</th>
                                             <th>Category</th>
                                             <th>Description</th>
@@ -42,6 +43,11 @@
                                         </thead>
                                         <tbody class="text-center">
                                             <tr v-for="(product, key) in products" :key="key">
+                                                <td>
+                                                    <a class="btn btn-info" @click.prevent="addToCart(product)">
+                                                        <i class="fas fa-cart-plus"></i>
+                                                    </a>
+                                                </td>
                                                 <td>{{ product.name }}</td>
                                                 <td>{{ product.category }}</td>
                                                 <td>{{ product.description }}</td>
@@ -76,10 +82,12 @@
 
 <script>
     import Pagination from '../../Components/Pagination.vue'
+    import Layout from '../../Components/Layout.vue'
 
     export default {
         components: { Pagination },
         props: ['token', 'categoryEnum'],
+        layout: Layout,
         data () {
             return {
                 keyword: '',
@@ -124,6 +132,10 @@
                 })
 
                 this.categories = items
+            },
+            addToCart(product) {
+                this.$cart.commit('set', product)
+                this.$swal(`${product.name} added to cart!`)
             },
             async search () {
                 this.page.current = 1

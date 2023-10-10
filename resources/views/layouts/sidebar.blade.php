@@ -12,57 +12,7 @@
                 <i class="fas fa-cart-shopping"></i>
                 <span class="badge badge-danger navbar-badge">3</span>
             </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <a href="#" class="dropdown-item">
-                    <div class="media">
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                Test Item 3
-                            </h3>
-                            <p class="text-sm">Dummy Description</p>
-                        </div>
-                        <div>
-                            <a href="javascript:void(0)" class="">
-                                <i class="fas fa-trash text-danger"></i>
-                            </a>
-                        </div>
-                    </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <div class="media">
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                Test Item 2
-                            </h3>
-                            <p class="text-sm">Dummy Description</p>
-                        </div>
-                        <div>
-                            <a href="javascript:void(0)" class="">
-                                <i class="fas fa-trash text-danger"></i>
-                            </a>
-                        </div>
-                    </div>
-                </a>
-                <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">
-                        <div class="media">
-                            <div class="media-body">
-                                <h3 class="dropdown-item-title">
-                                    Test Item 1
-                                </h3>
-                                <p class="text-sm">Dummy Description</p>
-                            </div>
-                            <div>
-                                <a href="javascript:void(0)" class="">
-                                    <i class="fas fa-trash text-danger"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </a>
-                <div class="dropdown-divider"></div>
-                <a href="{{ route('cart.create') }}" class="dropdown-item dropdown-footer">Go to Checkout Page</a>
-            </div>
+            <cart-list-component />
         </li>
     </ul>
 </nav>
