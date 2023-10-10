@@ -14,7 +14,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div id="app" class="col">
+                <div class="col">
                     <div class="row">
                         <div class="col-11 mx-auto">
                             <div class="card p-2">

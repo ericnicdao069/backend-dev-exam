@@ -15,7 +15,6 @@
         <div class="container-fluid">
             <div class="row px-5">
                 <div class="col-12 col-md-6">
-                    <cart-list-component></cart-list-component>
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="row py-2">
@@ -41,11 +40,12 @@
 
 <script>
     import Pagination from '../../Components/Pagination.vue'
-    import CartComponent from '../../Components/CartMiniComponent.vue'
+    import Layout from '../../Components/Layout.vue'
 
     export default {
         components: { Pagination },
         props: ['token'],
+        layout: Layout,
         data () {
             return {
             }
