@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::group(['prefix' => 'cart', 'as' => 'cart.'], function () {
         Route::get('/', [CartController::class, 'create'])->name('create');
         Route::post('/', [CartController::class, 'store'])->name('store');
-        Route::get('payment/success', [PaymentController::class, 'success'])->name('payment.success');
+        Route::get('payment/{order?}/success', [PaymentController::class, 'success'])->name('payment.success');
         Route::get('payment/failed', [PaymentController::class, 'failed'])->name('payment.failed');
     });
 

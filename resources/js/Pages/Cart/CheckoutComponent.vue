@@ -47,7 +47,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="row card">
+                            <!-- <div class="row card">
                                 <div class="card-header p-2 bg-dark text-center">
                                     <h5>Personal Information</h5>
                                 </div>
@@ -71,10 +71,10 @@
                                         <input class="form-control" v-model="form.contact" type="text" name="contact" placeholder="Enter Contact Number">
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="col-md-3">
-                            <cart :form="form" />
+                            <cart :form="form" :payable="total" />
                         </div>
                     </div>
                 </div>
@@ -97,8 +97,7 @@
                     firstname: '',
                     lastname: '',
                     address: '',
-                    contact: '',
-                    address: ''
+                    contact: ''
                 }
             }
         },

@@ -18,9 +18,9 @@ return new class extends Migration
             $table->text('address');
             $table->string('contact');
             $table->decimal('total_amount', 8, 2);
-            $table->text('paymongo_reference_id');
-            $table->boolean('payment_method');
-            $table->boolean('payment_status')->default(PaymentStatus::PENDING->value);
+            $table->text('paymongo_reference_id')->nullable();
+            $table->tinyInteger('payment_method');
+            $table->tinyInteger('payment_status')->default(PaymentStatus::PENDING->value);
             $table->timestamps();
         });
     }

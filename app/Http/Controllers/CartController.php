@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\PaymentMethod;
 use App\Services\PayMongoService;
+use App\Http\Requests\Api\Cart\StoreRequest;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Luigel\Paymongo\Facades\Paymongo;
@@ -35,10 +37,22 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         $paymongo = new PayMongoService();
-        $gcashSrc = $paymongo->createSource('gcash');
+
+        $order = auth()->user()->orders()->create([
+            'total_amount' => $request->payable,
+            'contact' => '121212121',
+            'address' => 'Dummy',
+            'payment_method' => PaymentMethod::GCASH->value,
+        ]);
+
+        $gcashSrc = $paymongo->createSource($request->payable, $order);
+
+        $order->update([
+            'paymongo_reference_id' => $gcashSrc->id
+        ]);
 
         return $gcashSrc->redirect['checkout_url'];
 
@@ -63,7 +77,6 @@ class CartController extends Controller
             // DB::commit();
 
             // return;
-
         } catch (Exception $e) {
             DB::rollBack();
             Log::error($e);
