@@ -1,47 +1,38 @@
 <template>
-<div>Test</div>
-    <!-- <div class="row">
-        <table>
-            <thead>
-                <tr><th>Name</th><th>Description</th><th>Quantity</th><th>Price</th><th>Subtotal</th></tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Test Item 3</td>
-                    <td>DUMMY DATA</td>
-                    <td>5</td>
-                    <td>5.00</td>
-                    <td>15.00</td>
-                </tr>
-                <tr>
-                    <td>Test Item 2</td>
-                    <td>DUMMY DATA</td>
-                    <td>3</td>
-                    <td>30.00</td>
-                    <td>90.00</td>
-                </tr>
-                <tr>
-                    <td>Test Item 1</td>
-                    <td>DUMMY DATA</td>
-                    <td>1</td>
-                    <td>100.00</td>
-                    <td>100.00</td>
-                </tr>
-            </tbody>
-        </table>
-    </div> -->
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        <div v-for="item in $cart.getters.list" :key="item.id">
+            <a href="#" class="dropdown-item">
+                <div class="media">
+                    <div class="media-body">
+                        <h3 class="dropdown-item-title">{{ item.name }}</h3>
+                        <p class="text-sm">{{ preview(item.description) }}</p>
+                    </div>
+                    <div class="my-auto ml-3">
+                        <a href="javascript:void(0)" class="">
+                            <i class="fas fa-trash text-danger"></i>
+                        </a>
+                    </div>
+                </div>
+            </a>
+            <div class="dropdown-divider"></div>
+        </div>
+        <a v-if="$cart.getters.list.length > 0" :href="$route('cart.create')" class="dropdown-item dropdown-footer">Go to Checkout Page</a>
+        <span v-else class="dropdown-item dropdown-footer">Empty Cart</span>
+    </div>
 </template>
 
 <script>
     export default {
         props: ['token'],
         data () {
-            return {
-            }
+            return {}
         },
         created () {
         },
         methods: {
+            preview(description) {
+                return description.substr(0, 50) + '...'
+            }
         }
     }
 </script>

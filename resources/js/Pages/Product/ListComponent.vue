@@ -82,10 +82,12 @@
 
 <script>
     import Pagination from '../../Components/Pagination.vue'
+    import Layout from '../../Components/Layout.vue'
 
     export default {
         components: { Pagination },
         props: ['token', 'categoryEnum'],
+        layout: Layout,
         data () {
             return {
                 keyword: '',

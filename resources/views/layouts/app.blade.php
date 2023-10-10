@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         @stack('metas')
 
         <title>Laravel</title>
@@ -26,13 +27,7 @@
         @endguest
 
         @auth
-            <div class="wrapper">
-                @include('layouts.sidebar')
-                <div class="content-wrapper">
-                    @inertia
-                    {{-- @yield('content') --}}
-                </div>
-            </div>
+            @inertia
             @routes
         @endauth
     </body>
