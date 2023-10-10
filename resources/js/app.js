@@ -7,7 +7,7 @@ import CKEditor from '@ckeditor/ckeditor5-vue';
 import { createApp, h } from 'vue/dist/vue.esm-bundler'
 import { createInertiaApp } from '@inertiajs/vue3'
 
-import CartListComponent from './Pages/Cart/ListComponent.vue'
+import CartListMini from './Components/CartMiniComponent.vue'
 
 import cart from './Store/cart.js'
 
@@ -30,7 +30,7 @@ createInertiaApp({
       app.config.globalProperties.$cart = cart
       app.config.globalProperties.$token = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 
-      app.component('CartListComponent', CartListComponent)
+      app.component('CartListMini', CartListMini)
 
       app.mount(el)
     },

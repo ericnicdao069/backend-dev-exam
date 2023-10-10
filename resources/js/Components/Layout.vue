@@ -16,7 +16,7 @@
                         <i class="fas fa-cart-shopping"></i>
                         <span class="badge badge-danger navbar-badge">{{ $cart.getters.list.length }}</span>
                     </a>
-                    <cart-list-component />
+                    <cart-list-mini />
                 </li>
             </ul>
         </nav>

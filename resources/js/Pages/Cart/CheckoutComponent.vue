@@ -41,7 +41,7 @@
 
 <script>
     import Pagination from '../../Components/Pagination.vue'
-    import CartComponent from './ListComponent.vue'
+    import CartComponent from '../../Components/CartMiniComponent.vue'
 
     export default {
         components: { Pagination },
