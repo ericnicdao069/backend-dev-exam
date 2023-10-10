@@ -36,6 +36,10 @@
                 data.append('contact', this.form.contact)
                 data.append('address', this.form.address)
 
+                this.$cart.getters.list.forEach(item => {
+                    data.append('products[]', item.id)
+                })
+
                 // for (const key in this.form) {
                 //     data.append(key, this.form[key])
                 // }
