@@ -23,7 +23,20 @@ export default createStore({
     },
     remove (state, id) {
       const index = state.items.findIndex(product => product.id === id)
+
       state.items.splice(index, 1)
+    },
+    update (state, {id: id, quantity: qty}) {
+      const index = state.items.findIndex(product => product.id === id)
+
+      if (qty > 0) {
+        const item = state.items[index]
+
+        item.quantity = qty
+        item.subtotal = item.price * qty
+      } else {
+        state.items.splice(index, 1)
+      }
     },
     clear (state) {
       state.items = []
