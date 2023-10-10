@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\PayMongoService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Luigel\Paymongo\Facades\Paymongo;
@@ -36,15 +37,8 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $gcashSrc = Paymongo::source()->create([
-            'type' => 'gcash',
-            'amount' => 100.00,
-            'currency' => 'PHP',
-            'redirect' => [
-                'success' => 'https://localhost:8000/success',
-                'failed' => 'https://localhost:8000/failed'
-            ]
-        ]);
+        $paymongo = new PayMongoService();
+        $gcashSrc = $paymongo->createSource('gcash');
 
         return $gcashSrc->redirect['checkout_url'];
 
