@@ -19,9 +19,10 @@
 </template>
 
 <script>
+    import { defineComponent } from 'vue'
     import Layout from '../../Components/Layout.vue'
 
-    export default {
+    export default defineComponent({
         layout: Layout,
         data () {
             return {
@@ -33,5 +34,5 @@
         },
         methods: {
         }
-    }
+    })
 </script>

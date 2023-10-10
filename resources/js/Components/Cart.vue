@@ -21,7 +21,9 @@
 </template>
 
 <script>
-    export default {
+    import { defineComponent } from 'vue'
+
+    export default defineComponent({
         props: ['token', 'form', 'payable'],
         data () {
             return {
@@ -61,7 +63,7 @@
                 })
             }
         }
-    }
+    })
 </script>
 
 <style scoped>

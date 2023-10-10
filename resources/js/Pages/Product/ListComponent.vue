@@ -80,11 +80,12 @@
     </section>
 </template>
 
-<script>
+<script lang="ts">
+    import { defineComponent } from 'vue'
     import Pagination from '../../Components/Pagination.vue'
     import Layout from '../../Components/Layout.vue'
 
-    export default {
+    export default defineComponent({
         components: { Pagination },
         props: ['token', 'categoryEnum'],
         layout: Layout,
@@ -169,7 +170,7 @@
                 })
             }
         }
-    }
+    })
 </script>
 
 <style scoped>

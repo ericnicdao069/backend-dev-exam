@@ -11,11 +11,12 @@
 </template>
 
 <script>
+    import { defineComponent } from 'vue'
     import DatePicker from '@vuepic/vue-datepicker';
     import '@vuepic/vue-datepicker/dist/main.css';
 
-    export default {
+    export default defineComponent({
         components: { DatePicker },
         props: ['form', 'errors']
-    }
+    })
 </script>

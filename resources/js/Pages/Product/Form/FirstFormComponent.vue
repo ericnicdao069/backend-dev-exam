@@ -30,14 +30,15 @@
 </template>
 
 <script>
+    import { defineComponent } from 'vue'
     import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-    export default {
+    export default defineComponent({
         props: ['form', 'errors', 'validate', 'categoryEnum'],
         data () {
             return {
                 editor: ClassicEditor
             }
         },
-    }
+    })
 </script>

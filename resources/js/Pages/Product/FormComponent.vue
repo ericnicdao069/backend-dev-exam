@@ -38,12 +38,13 @@
 </template>
 
 <script>
+    import { defineComponent } from 'vue'
     import Layout from '../../Components/Layout.vue'
     import FirstComponent from './Form/FirstFormComponent.vue'
     import SecondComponent from './Form/SecondFormComponent.vue'
     import ThirdComponent from './Form/ThirdFormComponent.vue'
 
-    export default {
+    export default defineComponent({
         components: { FirstComponent, SecondComponent, ThirdComponent },
         props: ['product', 'categoryEnum', 'token'],
         layout: Layout,
@@ -240,5 +241,5 @@
                 })
             }
         }
-    }
+    })
 </script>

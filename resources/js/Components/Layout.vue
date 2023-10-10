@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
     import { Link } from '@inertiajs/vue3'
 </script>
 
@@ -64,3 +64,9 @@
         </div>
     </div>
 </template>
+
+<script lang="ts">
+    import { defineComponent } from 'vue'
+
+    export default defineComponent({})
+</script>

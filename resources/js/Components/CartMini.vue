@@ -23,7 +23,9 @@
 </template>
 
 <script>
-    export default {
+    import { defineComponent } from 'vue'
+
+    export default defineComponent({
         data () {
             return {}
         },
@@ -37,7 +39,7 @@
                 this.$cart.commit('remove', id)
             }
         }
-    }
+    })
 </script>
 
 <style scoped>

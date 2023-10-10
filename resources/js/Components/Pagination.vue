@@ -27,7 +27,9 @@
 </template>
 
 <script>
-    export default {
+    import { defineComponent } from 'vue'
+
+    export default defineComponent({
         props: ['currentPage', 'lastPage'],
         data () {
             return {
@@ -70,7 +72,7 @@
                 return this.currentPage != page && page != '...'
             }
         }
-    }
+    })
 </script>
 
 <style scoped>

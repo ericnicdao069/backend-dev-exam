@@ -86,10 +86,11 @@
 </template>
 
 <script>
+    import { defineComponent } from 'vue'
     import Cart from '../../Components/Cart.vue'
     import Layout from '../../Components/Layout.vue'
 
-    export default {
+    export default defineComponent({
         components: { Cart },
         props: ['token'],
         layout: Layout,
@@ -119,7 +120,7 @@
                 console.log(this.cart)
             }
         }
-    }
+    })
 </script>
 
 <style scoped>
