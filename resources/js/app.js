@@ -7,7 +7,7 @@ import CKEditor from '@ckeditor/ckeditor5-vue';
 import { createApp, h } from 'vue/dist/vue.esm-bundler'
 import { createInertiaApp } from '@inertiajs/vue3'
 
-import CartListMini from './Components/CartMiniComponent.vue'
+import CartListMini from './Components/CartMini.vue'
 
 import cart from './Store/cart.js'
 

@@ -47,7 +47,7 @@
                         </li>
                         <li class="nav-header"></li>
                         <li class="nav-item">
-                            <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();" href="javascript:void(0)" class="nav-link">
+                            <a onclick="event.preventDefault(); sessionStorage.clear(); document.getElementById('logout-form').submit();" href="javascript:void(0)" class="nav-link">
                                 <i class="nav-icon fas fa-power-off"></i>
                                 <p>Logout</p>
                             </a>

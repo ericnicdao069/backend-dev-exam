@@ -5,10 +5,7 @@
 </template>
 
 <script>
-    import Pagination from '../../Components/Pagination.vue'
-
     export default {
-        components: { Pagination },
         props: ['token'],
         data () {
             return {

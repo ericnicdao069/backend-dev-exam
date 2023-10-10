@@ -39,11 +39,11 @@
 </template>
 
 <script>
-    import Pagination from '../../Components/Pagination.vue'
+    import Cart from '../../Components/Cart.vue'
     import Layout from '../../Components/Layout.vue'
 
     export default {
-        components: { Pagination },
+        components: { Cart },
         props: ['token'],
         layout: Layout,
         data () {
