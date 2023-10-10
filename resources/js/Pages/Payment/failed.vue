@@ -18,20 +18,11 @@
     </section>
 </template>
 
-<script>
+<script lang="ts">
+    import { defineComponent } from 'vue'
     import Layout from '../../Components/Layout.vue'
 
-    export default {
-        layout: Layout,
-        data () {
-            return {
-            }
-        },
-        computed: {
-        },
-        created () {
-        },
-        methods: {
-        }
-    }
+    export default defineComponent({
+        layout: Layout
+    })
 </script>

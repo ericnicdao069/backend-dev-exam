@@ -22,22 +22,24 @@
     </div>
 </template>
 
-<script>
-    export default {
+<script lang="ts">
+    import { defineComponent } from 'vue'
+
+    export default defineComponent({
         data () {
             return {}
         },
         created () {
         },
         methods: {
-            preview(description) {
+            preview(description: String) {
                 return description.substr(0, 25) + '...'
             },
-            remove(id) {
+            remove(id: Number) {
                 this.$cart.commit('remove', id)
             }
         }
-    }
+    })
 </script>
 
 <style scoped>

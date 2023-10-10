@@ -80,13 +80,25 @@
     </section>
 </template>
 
-<script>
+<script lang="ts">
+    import { defineComponent } from 'vue'
+    import axios from 'axios'
     import Pagination from '../../Components/Pagination.vue'
     import Layout from '../../Components/Layout.vue'
+    import Product from '../../types/product'
 
-    export default {
+    export default defineComponent({
         components: { Pagination },
-        props: ['token', 'categoryEnum'],
+        props: {
+            token: {
+                required: true,
+                type: String
+            },
+            categoryEnum: {
+                required: true,
+                type: Object
+            }
+        },
         layout: Layout,
         data () {
             return {
@@ -105,7 +117,7 @@
             this.processCategories()
         },
         methods: {
-            async fetchProducts (page) {
+            async fetchProducts (page: number) {
                 await axios.get(route('api.products.index'), {
                     headers: {
                         Authorization: "Bearer " + this.token, // Set the Bearer token in headers
@@ -125,7 +137,7 @@
                 })
             },
             processCategories () {
-                let items = {}
+                let items: Object = {}
 
                 Object.entries(this.categoryEnum).forEach(([key, category]) => {
                     items[key] = category
@@ -133,7 +145,7 @@
 
                 this.categories = items
             },
-            addToCart(product) {
+            addToCart(product: Product) {
                 this.$cart.commit('set', product)
                 this.$swal(`${product.name} added to cart!`)
             },
@@ -141,13 +153,13 @@
                 this.page.current = 1
                 this.fetchProducts(this.page.current)
             },
-            async pageChangeHandle (value) {
+            async pageChangeHandle (value: number) {
                 if ((value != this.page.current && value != '...')) {
                     this.page.current = value
                     this.fetchProducts(value)
                 }
             },
-            async deleteProduct (product) {
+            async deleteProduct (product: Product) {
                 await this.$swal({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
@@ -169,7 +181,7 @@
                 })
             }
         }
-    }
+    })
 </script>
 
 <style scoped>

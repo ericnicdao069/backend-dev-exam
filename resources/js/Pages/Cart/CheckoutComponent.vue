@@ -85,13 +85,14 @@
     </section>
 </template>
 
-<script>
+<script lang="ts">
+    import { defineComponent } from 'vue'
     import Cart from '../../Components/Cart.vue'
+    import Product from '../../types/product'
     import Layout from '../../Components/Layout.vue'
 
-    export default {
+    export default defineComponent({
         components: { Cart },
-        props: ['token'],
         layout: Layout,
         data () {
             return {
@@ -113,13 +114,11 @@
             console.log(this.cart)
         },
         methods: {
-            update(item) {
+            update(item: Product) {
                 this.$cart.commit('update', item)
-                console.log(this.$cart.getters.list)
-                console.log(this.cart)
             }
         }
-    }
+    })
 </script>
 
 <style scoped>

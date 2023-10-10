@@ -12,10 +12,11 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue'
 import videojs from 'video.js'
 import 'video.js/dist/video-js.css'
 
-export default {
+export default defineComponent({
     name: 'VideoPlayer',
     data() {
         return {
@@ -59,7 +60,7 @@ export default {
             this.player.dispose()
         }
     },
-}
+})
 </script>
 
 <style scoped="">

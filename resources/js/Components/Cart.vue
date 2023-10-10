@@ -20,9 +20,25 @@
     </div>
 </template>
 
-<script>
-    export default {
-        props: ['token', 'form', 'payable'],
+<script lang="ts">
+    import { defineComponent } from 'vue'
+    import axios from 'axios'
+
+    export default defineComponent({
+        props: {
+            token: {
+                required: true,
+                type: String
+            },
+            form: {
+                required: true,
+                type: Object
+            },
+            payable: {
+                required: true,
+                type: Number
+            }
+        },
         data () {
             return {
             }
@@ -61,7 +77,7 @@
                 })
             }
         }
-    }
+    })
 </script>
 
 <style scoped>
