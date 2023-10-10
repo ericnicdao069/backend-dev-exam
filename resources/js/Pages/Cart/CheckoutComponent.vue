@@ -16,24 +16,34 @@
                         <div class="col-md-8">
                             <div class="row card">
                                 <div class="card-header p-2 bg-dark text-center">
-                                    <h5>Cart</h5>
+                                    <h5>Cart Details</h5>
                                 </div>
                                 <div class="card-body">
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
                                                 <th class="col-3">Item</th>
-                                                <th class="col-6">Description</th>
-                                                <th class="col-3">Price</th>
+                                                <th class="col-4">Description</th>
+                                                <th class="col-1">Quantity</th>
+                                                <th class="col-2">Price</th>
+                                                <th class="col-2">Subtotal</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr v-for="item in $cart.getters.list" :key="item.id">
                                                 <td class="align-middle col-3">{{ item.name }}</td>
-                                                <td class="col-6">{{ item.description }}</td>
-                                                <td class="align-middle col-3">PhP {{ (Math.random() * 100).toFixed(2) }}</td>
+                                                <td class="col-4">{{ item.description }}</td>
+                                                <td class="align-middle col-1">{{ item.quantity }}</td>
+                                                <td class="align-middle col-2">₱ {{ item.price }}</td>
+                                                <td class="align-middle text-right  col-2">₱ {{ item.subtotal }}</td>
                                             </tr>
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td class="text-right font-weight-bold" colspan="4">Total</td>
+                                                <td class="text-right">₱ {{ total }}</td>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
@@ -90,6 +100,11 @@
                     contact: '',
                     address: ''
                 }
+            }
+        },
+        computed: {
+            total () {
+                return this.$cart.getters.list.reduce((accumulator, item) => accumulator + +item.subtotal, 0).toFixed(2)
             }
         },
         created () {

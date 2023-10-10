@@ -3,7 +3,10 @@
         <div v-for="item in $cart.getters.list" :key="item.id">
             <div class="media dropdown-item">
                 <div class="media-body">
-                    <h3 class="dropdown-item-title">{{ item.name }}</h3>
+                    <div class="row justify-content-between">
+                        <h3 class="dropdown-item-title">{{ item.name }}</h3>
+                        <h3 class="dropdown-item-title">{{ item.price }}</h3>
+                    </div>
                     <p class="text-sm">{{ preview(item.description) }}</p>
                 </div>
                 <div class="my-auto ml-3 position-relative">
@@ -28,7 +31,7 @@
         },
         methods: {
             preview(description) {
-                return description.substr(0, 50) + '...'
+                return description.substr(0, 25) + '...'
             },
             remove(id) {
                 this.$cart.commit('remove', id)

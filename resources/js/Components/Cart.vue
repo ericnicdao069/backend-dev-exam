@@ -5,7 +5,7 @@
             <ul class="list-group list-group-unbordered mb-3">
                 <li class="list-group-item" v-for="item in $cart.getters.list" :key="item.id">
                     <b>{{ item.name }}</b>
-                    <a class="float-right">PhP {{ (Math.random() * 100).toFixed(2) }}</a>
+                    <a class="float-right">PhP {{ item.price }}</a>
                 </li>
             </ul>
 
@@ -32,23 +32,23 @@
         methods: {
             submit() {
                 console.log(this.form)
-                // axios({
-                //     method: 'POST',
-                //     url: this.$route('cart.store'),
-                //     // data: data,
-                //     headers: {
-                //         Authorization: "Bearer " + this.token,
-                //         'Content-Type': 'multipart/form-data'
-                //     }
-                // }).then(async response => {
-                //     if (response.status == 200) {
-                //         window.open(response.data, '_blank');
-                //     }
-                // }).catch(error => {
-                //     this.errors = error.response.data.errors
-                //     this.redirectStep(Object.getOwnPropertyNames(error.response.data.errors))
-                //     console.error('Error fetching data:', error)
-                // })
+                axios({
+                    method: 'POST',
+                    url: this.$route('cart.store'),
+                    // data: data,
+                    headers: {
+                        Authorization: "Bearer " + this.token,
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }).then(async response => {
+                    if (response.status == 200) {
+                        window.open(response.data, '_blank');
+                    }
+                }).catch(error => {
+                    this.errors = error.response.data.errors
+                    this.redirectStep(Object.getOwnPropertyNames(error.response.data.errors))
+                    console.error('Error fetching data:', error)
+                })
             }
         }
     }
