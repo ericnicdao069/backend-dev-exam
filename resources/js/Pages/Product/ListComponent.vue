@@ -85,6 +85,7 @@
     import axios from 'axios'
     import Pagination from '../../Components/Pagination.vue'
     import Layout from '../../Components/Layout.vue'
+    import Product from '../../types/product'
 
     export default defineComponent({
         components: { Pagination },
@@ -144,7 +145,7 @@
 
                 this.categories = items
             },
-            addToCart(product) {
+            addToCart(product: Product) {
                 this.$cart.commit('set', product)
                 this.$swal(`${product.name} added to cart!`)
             },
@@ -158,7 +159,7 @@
                     this.fetchProducts(value)
                 }
             },
-            async deleteProduct (product: Object) {
+            async deleteProduct (product: Product) {
                 await this.$swal({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
