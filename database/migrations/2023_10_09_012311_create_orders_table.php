@@ -15,6 +15,8 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('admin_id')->constrained();
+            $table->text('address');
+            $table->string('contact');
             $table->decimal('total_amount', 8, 2);
             $table->boolean('payment_method');
             $table->boolean('payment_status')->default(PaymentStatus::PENDING->value);
