@@ -19,7 +19,9 @@
 </template>
 
 <script>
-    export default {
+    import { defineComponent } from 'vue'
+
+    export default defineComponent({
         props: ['form', 'errors', 'validate'],
         methods: {
             filesChanged () {
@@ -42,7 +44,7 @@
                 this.validate()
             },
         }
-    }
+    })
 </script>
 
 <style scoped>

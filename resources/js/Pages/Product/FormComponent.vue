@@ -1,42 +1,53 @@
 <template>
-    <div class="row">
-        <div class="col col-md-11 mx-auto">
-            <div class="card p-2">
-                <div class="card-header">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
                     <div class="row">
-                        <div class="col">
-                            Product {{ product ? 'Update' : 'Create' }}
+                        <div class="col col-md-11 mx-auto">
+                            <div class="card p-2 mt-5">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col">
+                                            Product {{ product ? 'Update' : 'Create' }}
+                                        </div>
+                                        <div class="col text-right">
+                                            Step {{ step }} / 3
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <first-component :form="form" :errors="errors" :validate="validate" :category-enum="categoryEnum" v-if="step == 1" />
+                                    <second-component :form="form" :errors="errors" :validate="validate" v-if="step == 2" />
+                                    <third-component :form="form" :errors="errors" v-if="step == 3" />
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row" :class="{ 'justify-content-end': isPageOne, 'justify-content-between': !isPageOne }">
+                                        <a v-if="step != 1" class="btn btn-light" @click="back">Back</a>
+                                        <a v-if="step != 3" class="btn btn-dark" @click="next">Next</a>
+                                        <a v-if="step == 3" class="btn btn-dark" @click="submit">Submit</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col text-right">
-                            Step {{ step }} / 3
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <first-component :form="form" :errors="errors" :validate="validate" :category-enum="categoryEnum" v-if="step == 1" />
-                    <second-component :form="form" :errors="errors" :validate="validate" v-if="step == 2" />
-                    <third-component :form="form" :errors="errors" v-if="step == 3" />
-                </div>
-                <div class="card-footer">
-                    <div class="row" :class="{ 'justify-content-end': isPageOne, 'justify-content-between': !isPageOne }">
-                        <a v-if="step != 1" class="btn btn-light" @click="back">Back</a>
-                        <a v-if="step != 3" class="btn btn-dark" @click="next">Next</a>
-                        <a v-if="step == 3" class="btn btn-dark" @click="submit">Submit</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script>
+    import { defineComponent } from 'vue'
+    import Layout from '../../Components/Layout.vue'
     import FirstComponent from './Form/FirstFormComponent.vue'
     import SecondComponent from './Form/SecondFormComponent.vue'
     import ThirdComponent from './Form/ThirdFormComponent.vue'
 
-    export default {
+    export default defineComponent({
         components: { FirstComponent, SecondComponent, ThirdComponent },
-        props: ['product', 'categoryEnum'],
+        props: ['product', 'categoryEnum', 'token'],
+        layout: Layout,
         data () {
             return {
                 step: 1,
@@ -80,6 +91,7 @@
         },
         created () {
             console.log('Parent Form Created')
+            console.log(this.token)
 
             if (this.product) {
                 this.form = this.product
@@ -207,6 +219,7 @@
                     url: apiRoute,
                     data: data,
                     headers: {
+                        Authorization: "Bearer " + this.token,
                         'Content-Type': 'multipart/form-data'
                     }
                 }).then(async response => {
@@ -228,5 +241,5 @@
                 })
             }
         }
-    }
+    })
 </script>

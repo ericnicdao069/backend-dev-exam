@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         @stack('metas')
 
         <title>Laravel</title>
@@ -14,6 +15,10 @@
         <!-- Styles -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+        @auth
+            @inertiaHead
+        @endauth
+
         @stack('styles')
     </head>
     <body class="antialiased {{ $bodyClass ?? '' }}">
@@ -22,12 +27,7 @@
         @endguest
 
         @auth
-            <div class="wrapper">
-                @include('layouts.sidebar')
-                <div class="content-wrapper">
-                    @yield('content')
-                </div>
-            </div>
+            @inertia
             @routes
         @endauth
     </body>
@@ -35,7 +35,10 @@
 
     @vite([
         'resources/js/plugins/jquery/jquery.min.js',
-        'resources/js/dist/js/adminlte.js'
+        'resources/js/plugins/jquery-ui/jquery-ui.min.js',
+        'resources/js/plugins/bootstrap/js/bootstrap.bundle.min.js',
+        'resources/js/dist/js/adminlte.js',
+        'resources/js/app.js'
     ])
     @stack('scripts')
 </html>

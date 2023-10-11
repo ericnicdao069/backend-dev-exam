@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\ProductCategory;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ProductController extends Controller
 {
@@ -13,9 +14,8 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        return view('product.index')->with([
-            'token' => $request->cookie('access_token'),
-            'categories' => json_encode(ProductCategory::getOptions())
+        return Inertia::render('Product/ListComponent', [
+            'categoryEnum' => ProductCategory::getOptions()
         ]);
     }
 
@@ -28,9 +28,9 @@ class ProductController extends Controller
             $product->load(['media']);
         }
 
-        return view('product.form', compact('product'))->with([
-            'token' => $request->cookie('access_token'),
-            'categories' => json_encode(ProductCategory::getOptions())
+        return Inertia::render('Product/FormComponent', [
+            'product' => $product,
+            'categoryEnum' => ProductCategory::getOptions()
         ]);
     }
 }
