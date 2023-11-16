@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Filters\Product\CategoryFilter;
+use App\Filters\Product\SearchFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Product\StoreRequest;
 use App\Http\Requests\Api\Product\UpdateRequest;
@@ -9,6 +11,7 @@ use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -23,17 +26,17 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        // filters
-        $query = Product::when($request->category, function ($query) use ($request) {
-            return $query->where('category', $request->category);
-        })->when($request->keyword, function ($query) use ($request) {
-            return $query->where(function ($q) use ($request) {
-                $q->where('name', 'LIKE', "%$request->keyword%")
-                    ->orWhere('description', 'LIKE', "%$request->keyword%");
-            });
-        });
+        $query = Product::query();
 
-        $products = $query->orderBy('created_at', 'DESC')->paginate(5); // pagination
+        $products = app(Pipeline::class)
+            ->send($query)
+            ->through([
+                CategoryFilter::class,
+                SearchFilter::class
+            ])->via("filter")
+            ->then(function ($q) {
+                return $q->orderBy('created_at', 'DESC')->paginate(5);
+            });
 
         return ProductResource::collection($products);
     }
