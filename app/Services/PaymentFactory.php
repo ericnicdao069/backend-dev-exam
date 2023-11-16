@@ -10,7 +10,7 @@ class PaymentFactory
     public $request;
     public $order;
 
-    public function __construct($request, $payment) {
+    public function __construct($request, $order) {
         $this->request = $request;
         $this->order = $order;
     }
@@ -20,7 +20,7 @@ class PaymentFactory
         switch ($this->request->payment_method)
         {
             case "gcash":
-                return new GCashPayment(); break;
+                return new GCashPayment($this->order); break;
             case "grabpay":
                 return new GrabPayPayment(); break;
             default:
