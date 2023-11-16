@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Enums\PaymentMethod;
-use App\Services\PayMongoService;
+// use App\Services\PayMongoService;
 use App\Http\Requests\Api\Cart\StoreRequest;
+use App\Services\PaymentFactory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Luigel\Paymongo\Facades\Paymongo;
+// use Luigel\Paymongo\Facades\Paymongo;
 
 class CartController extends Controller
 {
@@ -39,8 +40,6 @@ class CartController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $paymongo = new PayMongoService();
-
         $order = auth()->user()->orders()->create([
             'total_amount' => $request->payable,
             'contact' => $request->contact,
@@ -49,6 +48,10 @@ class CartController extends Controller
         ]);
 
         $order->products()->attach($request->products);
+
+        $paymentFactory = new PaymentFactory($request, $order);
+        $paymentIntent = $paymentFactory->initializePayment();
+        $payment = $paymentIntent->pay();
 
         $gcashSrc = $paymongo->createSource($request->payable, $order);
 

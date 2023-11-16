@@ -4,7 +4,8 @@ namespace App\Filters;
 
 use Closure;
 
-interface Pipe {
+interface Pipe
+{
     /**
      * @param \Illuminate\Database\Query\Builder $model
      * @param \Closure $next
