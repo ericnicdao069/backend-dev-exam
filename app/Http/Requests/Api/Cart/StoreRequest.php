@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Api\Cart;
 
+use App\Enums\PaymentMethod;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRequest extends FormRequest
@@ -26,5 +27,17 @@ class StoreRequest extends FormRequest
             'contact' => ['required', 'string'],
             'payable' => ['required', 'numeric']
         ];
+    }
+
+    public function data(): array
+    {
+        return array_merge($this->except([
+            '_token',
+            'payable'
+        ]), [
+            'admin_id' => auth()->user()->id,
+            'total_amount' => $this->payable,
+            'payment_method' => PaymentMethod::GCASH->value
+        ]);
     }
 }
