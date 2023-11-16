@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Services\Payments\GCashPayment;
-use App\Services\Payments\GrabPayPayment;
+use App\Services\Payments\PayMayaPayment;
+use App\Services\Payments\PayMongoPayment;
 
 class PaymentFactory
 {
@@ -19,10 +19,10 @@ class PaymentFactory
     {
         switch ($this->request->payment_method)
         {
-            case "gcash":
-                return new GCashPayment($this->order); break;
-            case "grabpay":
-                return new GrabPayPayment(); break;
+            case "paymaya":
+                return new PayMayaPayment($this->order); break;
+            case "paymongo":
+                return new PayMongoPayment($this->order); break;
             default:
                 throw new \Exception("Payment Method not supported");
         }

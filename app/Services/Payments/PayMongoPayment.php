@@ -16,12 +16,7 @@ class PayMongoPayment implements PaymentInterface
 
     public function pay()
     {
-        $this->createSource();
-    }
-
-    protected function createSource()
-    {
-        return Paymongo::source()->create([
+        $payment = Paymongo::source()->create([
             'type' => 'gcash',
             'amount' => $this->orders->total_amount,
             'currency' => 'PHP',
@@ -30,5 +25,10 @@ class PayMongoPayment implements PaymentInterface
                 'failed' => route('cart.payment.failed')
             ]
         ]);
+
+        return (object)[
+            'reference' => $payment->id,
+            'redirect' => $payment->redirect['checkout_url']
+        ];
     }
 }

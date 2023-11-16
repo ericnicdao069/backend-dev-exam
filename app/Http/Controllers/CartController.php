@@ -40,10 +40,10 @@ class CartController extends Controller
             $payment = PaymentService::startPaymentProcess($request, $order);
 
             $order->update([
-                'paymongo_reference_id' => $payment->checkoutId
+                'paymongo_reference_id' => $payment->reference
             ]);
     
-            return $payment->redirectUrl;
+            return $payment->redirect;
         } catch (Exception $e) {
             DB::rollBack();
             Log::error($e);

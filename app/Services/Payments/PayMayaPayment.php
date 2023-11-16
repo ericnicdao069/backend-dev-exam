@@ -37,6 +37,11 @@ class PayMayaPayment implements PaymentInterface
             ],
         ]);
 
-        return json_decode($response->getBody());;
+        $payment = json_decode($response->getBody());
+
+        return (object)[
+            'reference' => $payment->checkoutId,
+            'redirect' => $payment->redirectUrl
+        ];
     }
 }
